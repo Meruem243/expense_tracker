@@ -15,6 +15,20 @@ class _NewExpenseState extends State<NewExpense> {
 
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+  void _presntDatePicker() {
+    final initialDate = DateTime.now();
+    final firstDate = DateTime(
+      initialDate.year - 1,
+      initialDate.month,
+      initialDate.day,
+    );
+    showDatePicker(
+      context: context,
+      initialDate: initialDate,
+      firstDate: firstDate,
+      lastDate: initialDate,
+    );
+  }
 
   @override
   void dispose() {
@@ -36,15 +50,37 @@ class _NewExpenseState extends State<NewExpense> {
             decoration: const InputDecoration(label: Text('Title')),
           ),
           const SizedBox(height: 16),
-          TextField(
-            controller: _amountController,
-            // maxLength: 50,
-            decoration: const InputDecoration(
-              prefix: Text('\$ '),
-              label: Text('Amount'),
-            ),
-            // keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            keyboardType: TextInputType.number,
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _amountController,
+                  // maxLength: 50,
+                  decoration: const InputDecoration(
+                    prefix: Text('\$ '),
+                    label: Text('Amount'),
+                  ),
+                  // keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+
+              const SizedBox(width: 16),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text('Selected Date'),
+                    const SizedBox(width: 8),
+                    IconButton(
+                      onPressed: _presntDatePicker,
+                      icon: const Icon(Icons.calendar_month),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           Row(
