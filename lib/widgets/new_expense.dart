@@ -60,7 +60,7 @@ class _NewExpenseState extends State<NewExpense> {
               const SizedBox(width: 16),
               OutlinedButton(
                 onPressed: () {
-                  //Navigator.pop(context);
+                  Navigator.pop(context);
                 },
                 child: Text('Cancel'),
               ),
